@@ -1,0 +1,20 @@
+services:
+  database:
+    build: ./sqlite
+    container_name: database
+    volumes:
+      - db_data:/data
+    # command: ["sqlite3", "/data/database.db", ".exit"]
+    command: ["tail", "-f", "/dev/null"]
+
+  script-runner:
+    build: ./script-runner
+    container_name: script-runner
+    volumes:
+      - db_data:/data
+    depends_on:
+      - database
+    command: ["bash", "-c", "python db_setup.py && python import_csv.py && python analyse_ventes.py && tail -f /dev/null"]
+
+volumes:
+  db_data:
