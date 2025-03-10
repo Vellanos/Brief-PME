@@ -34,6 +34,32 @@ CREATE TABLE IF NOT EXISTS ventes (
 )
 ''')
 
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS analyse_chiffre_affaires (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    chiffre_affaires REAL NOT NULL,
+    date_analyse TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS analyse_ventes_produits (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    produit TEXT NOT NULL,
+    total_vendu INTEGER NOT NULL,
+    date_analyse TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+''')
+
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS analyse_ventes_villes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ville TEXT NOT NULL,
+    total_vendu INTEGER NOT NULL,
+    date_analyse TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)
+''')
+
 # Sauvegarde et fermeture
 conn.commit()
 conn.close()

@@ -4,7 +4,6 @@ services:
     container_name: database
     volumes:
       - db_data:/data
-    # command: ["sqlite3", "/data/database.db", ".exit"]
     command: ["tail", "-f", "/dev/null"]
 
   script-runner:
