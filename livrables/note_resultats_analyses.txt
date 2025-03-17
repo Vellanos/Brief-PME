@@ -1,0 +1,18 @@
+4.a) Chiffres d'affaire total : 
+5268.78
+
+4.b) Ventes par produits
+Produit A : 24
+Produit B : 27
+Produit C : 15
+Produit D : 21
+Produit E : 35
+
+4.c) Ventes par régions
+Marseille   27
+Lyon        21
+Paris       20
+Bordeaux    19
+Nantes      17
+Strasbourg  11
+Lille       7

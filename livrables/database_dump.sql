@@ -1,0 +1,99 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE magasins (
+    id_magasin INTEGER PRIMARY KEY,
+    ville TEXT NOT NULL,
+    nombre_salaries INTEGER NOT NULL
+);
+INSERT INTO magasins VALUES(1,'Paris',10);
+INSERT INTO magasins VALUES(2,'Marseille',5);
+INSERT INTO magasins VALUES(3,'Lyon',8);
+INSERT INTO magasins VALUES(4,'Bordeaux',12);
+INSERT INTO magasins VALUES(5,'Lille',6);
+INSERT INTO magasins VALUES(6,'Nantes',7);
+INSERT INTO magasins VALUES(7,'Strasbourg',9);
+CREATE TABLE produits (
+    id_reference TEXT PRIMARY KEY,
+    nom TEXT NOT NULL,
+    prix REAL NOT NULL,
+    stock INTEGER NOT NULL
+);
+INSERT INTO produits VALUES('REF001','Produit A',49.99000000000000198,100);
+INSERT INTO produits VALUES('REF002','Produit B',19.98999999999999843,50);
+INSERT INTO produits VALUES('REF003','Produit C',29.98999999999999844,75);
+INSERT INTO produits VALUES('REF004','Produit D',79.98999999999999489,120);
+INSERT INTO produits VALUES('REF005','Produit E',39.99000000000000198,80);
+CREATE TABLE ventes (
+    id_vente INTEGER PRIMARY KEY AUTOINCREMENT,
+    date_vente DATE NOT NULL,
+    id_reference TEXT NOT NULL,
+    quantite INTEGER NOT NULL,
+    id_magasin INTEGER NOT NULL,
+    FOREIGN KEY(id_reference) REFERENCES produits(id_reference),
+    FOREIGN KEY(id_magasin) REFERENCES magasins(id_magasin)
+);
+INSERT INTO ventes VALUES(1,'2023-05-27','REF001',5,1);
+INSERT INTO ventes VALUES(2,'2023-05-28','REF002',3,2);
+INSERT INTO ventes VALUES(3,'2023-05-29','REF003',2,1);
+INSERT INTO ventes VALUES(4,'2023-05-30','REF004',4,3);
+INSERT INTO ventes VALUES(5,'2023-05-31','REF005',7,2);
+INSERT INTO ventes VALUES(6,'2023-06-01','REF001',3,4);
+INSERT INTO ventes VALUES(7,'2023-06-02','REF002',6,1);
+INSERT INTO ventes VALUES(8,'2023-06-03','REF003',1,5);
+INSERT INTO ventes VALUES(9,'2023-06-04','REF004',2,3);
+INSERT INTO ventes VALUES(10,'2023-06-05','REF005',5,6);
+INSERT INTO ventes VALUES(11,'2023-06-06','REF001',4,7);
+INSERT INTO ventes VALUES(12,'2023-06-07','REF002',3,2);
+INSERT INTO ventes VALUES(13,'2023-06-08','REF003',6,4);
+INSERT INTO ventes VALUES(14,'2023-06-09','REF004',2,1);
+INSERT INTO ventes VALUES(15,'2023-06-10','REF005',8,3);
+INSERT INTO ventes VALUES(16,'2023-06-11','REF001',3,2);
+INSERT INTO ventes VALUES(17,'2023-06-12','REF002',5,4);
+INSERT INTO ventes VALUES(18,'2023-06-13','REF003',2,5);
+INSERT INTO ventes VALUES(19,'2023-06-14','REF004',4,7);
+INSERT INTO ventes VALUES(20,'2023-06-15','REF005',6,6);
+INSERT INTO ventes VALUES(21,'2023-06-16','REF001',3,1);
+INSERT INTO ventes VALUES(22,'2023-06-17','REF002',7,2);
+INSERT INTO ventes VALUES(23,'2023-06-18','REF003',2,3);
+INSERT INTO ventes VALUES(24,'2023-06-19','REF004',5,4);
+INSERT INTO ventes VALUES(25,'2023-06-20','REF005',4,5);
+INSERT INTO ventes VALUES(26,'2023-06-21','REF001',6,6);
+INSERT INTO ventes VALUES(27,'2023-06-22','REF002',3,7);
+INSERT INTO ventes VALUES(28,'2023-06-23','REF003',2,1);
+INSERT INTO ventes VALUES(29,'2023-06-24','REF004',4,2);
+INSERT INTO ventes VALUES(30,'2023-06-25','REF005',5,3);
+CREATE TABLE analyse_chiffre_affaires (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    chiffre_affaires REAL NOT NULL,
+    date_analyse TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO analyse_chiffre_affaires VALUES(1,5268.779999999998836,'2025-03-17 14:13:45');
+CREATE TABLE analyse_ventes_produits (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    produit TEXT NOT NULL,
+    total_vendu INTEGER NOT NULL,
+    date_analyse TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO analyse_ventes_produits VALUES(1,'Produit E',35,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_produits VALUES(2,'Produit B',27,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_produits VALUES(3,'Produit A',24,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_produits VALUES(4,'Produit D',21,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_produits VALUES(5,'Produit C',15,'2025-03-17 14:13:45');
+CREATE TABLE analyse_ventes_villes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ville TEXT NOT NULL,
+    total_vendu INTEGER NOT NULL,
+    date_analyse TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO analyse_ventes_villes VALUES(1,'Marseille',27,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_villes VALUES(2,'Lyon',21,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_villes VALUES(3,'Paris',20,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_villes VALUES(4,'Bordeaux',19,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_villes VALUES(5,'Nantes',17,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_villes VALUES(6,'Strasbourg',11,'2025-03-17 14:13:45');
+INSERT INTO analyse_ventes_villes VALUES(7,'Lille',7,'2025-03-17 14:13:45');
+INSERT INTO sqlite_sequence VALUES('ventes',30);
+INSERT INTO sqlite_sequence VALUES('analyse_chiffre_affaires',1);
+INSERT INTO sqlite_sequence VALUES('analyse_ventes_produits',5);
+INSERT INTO sqlite_sequence VALUES('analyse_ventes_villes',7);
+COMMIT;

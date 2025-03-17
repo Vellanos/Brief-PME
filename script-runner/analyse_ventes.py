@@ -3,7 +3,7 @@ import sqlite3
 def executer_requete(query, description, insert_query=None):
     cursor.execute(query)
     result = cursor.fetchall()
-    print(f"\n📊 {description} :")
+    print(f"\n {description} :")
     for row in result:
         print(row)
     
@@ -50,4 +50,4 @@ INSERT INTO analyse_ventes_villes (ville, total_vendu) VALUES (?, ?)
 # Fermeture
 conn.commit()
 conn.close()
-print("✅ Analyse des ventes terminée et stockée dans la base de données.")
+print("Analyse des ventes terminée et stockée dans la base de données.")

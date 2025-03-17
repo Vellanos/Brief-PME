@@ -19,7 +19,7 @@ def telecharger_csv(url):
     if response.status_code == 200:
         return pd.read_csv(StringIO(response.text))
     else:
-        print(f"⚠️ Erreur lors du téléchargement : {url}")
+        print(f"Erreur lors du téléchargement : {url}")
         return None
 
 def nettoyer_donnees(df, table):
@@ -37,7 +37,7 @@ def importer_csv(df, table, unique_column):
         existing_ids = set(row[0] for row in cursor.execute(f"SELECT {unique_column} FROM {table}").fetchall())
         df_filtered = df[~df[unique_column].isin(existing_ids)]
         df_filtered.to_sql(table, conn, if_exists='append', index=False)
-        print(f"✅ {len(df_filtered)} nouvelles lignes ajoutées à {table}")
+        print(f"{len(df_filtered)} nouvelles lignes ajoutées à {table}")
 
 # Importation des fichiers
 importer_csv(telecharger_csv(URLS['magasins']), 'magasins', 'id_magasin')
@@ -47,4 +47,4 @@ importer_csv(telecharger_csv(URLS['ventes']), 'ventes', 'id_magasin')
 # Fermeture
 conn.commit()
 conn.close()
-print("✅ Importation des données terminée.")
+print("Importation des données terminée.")
