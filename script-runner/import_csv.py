@@ -42,7 +42,7 @@ def importer_csv(df, table, unique_column):
 # Importation des fichiers
 importer_csv(telecharger_csv(URLS['magasins']), 'magasins', 'id_magasin')
 importer_csv(telecharger_csv(URLS['produits']), 'produits', 'id_reference')
-importer_csv(telecharger_csv(URLS['ventes']), 'ventes', 'id_magasin')
+importer_csv(telecharger_csv(URLS['ventes']), 'ventes', 'date_vente')
 
 # Fermeture
 conn.commit()

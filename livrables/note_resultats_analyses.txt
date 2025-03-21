@@ -8,7 +8,7 @@ Produit C : 15
 Produit D : 21
 Produit E : 35
 
-4.c) Ventes par régions
+4.c) Ventes par ville
 Marseille   27
 Lyon        21
 Paris       20
